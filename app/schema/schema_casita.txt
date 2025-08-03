@@ -1,0 +1,13 @@
+casita/
+├── app/
+│   ├── public/
+│   │   ├── index.html       <-- Página estática principal
+│   │   ├── css/
+│   │   ├── js/
+│   │   └── images/
+│   │
+│   ├── src/
+│   │   ├── config/
+│   │   │    └── database.php
+│   │   ├── api/             <-- Archivos PHP que procesan peticiones
+│   │   └── helpers/
