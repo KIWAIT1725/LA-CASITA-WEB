@@ -1,32 +1,48 @@
 <?php
-// Validar que sea método POST
+// api/login.php
+
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
     http_response_code(405);
-    echo "Método no permitido";
-    exit;
+    die("Método no permitido");
 }
 
-// Conexión a la base de datos
-require_once __DIR__ . "/../../src/config/db.php";
+session_start();
+require_once __DIR__ . "/../../src/config/db.php"; // Usa $pdo
 
-$usuario = isset($_POST["usuario"]) ? $_POST["usuario"] : '';
-$contrasena = isset($_POST["contrasena"]) ? $_POST["contrasena"] : '';
+$usuario = trim(isset($_POST['usuario']) ? $_POST['usuario'] : '');
+$contrasena = isset($_POST['contrasena']) ? $_POST['contrasena'] : '';
 
 if (empty($usuario) || empty($contrasena)) {
     echo "<script>alert('❌ Todos los campos son obligatorios'); window.location.href='../index.html';</script>";
     exit;
 }
 
-// Consulta segura con pg_query_params
-$query = "SELECT * FROM usuarios WHERE usuario = $1 AND contrasena = $2";
-$result = pg_query_params($conn, $query, array($usuario, $contrasena));
+try {
+    $stmt = $pdo->prepare("SELECT id, usuario, contrasena FROM usuarios WHERE usuario = ?");
+    $stmt->execute(array($usuario));
+    $user = $stmt->fetch();
 
-if (pg_num_rows($result) > 0) {
-    // Inicio de sesión correcto
-    echo "<script>alert('✅ Bienvenido, $usuario'); window.location.href='../dashboard.html';</script>";
-    exit;
-} else {
-    // Usuario no válido
-    echo "<script>alert('❌ Usuario o contraseña incorrectos'); window.location.href='../index.html';</script>";
-    exit;
+    if ($user && password_verify($contrasena, $user['contrasena'])) {
+        // Login exitoso
+        $_SESSION['usuario'] = $user['usuario'];
+        $_SESSION['id'] = $user['id'];
+
+        echo "<script>
+            alert('✅ Bienvenido, " . htmlspecialchars($user['usuario']) . "');
+            window.location.href = '../dashboard.html';
+        </script>";
+    } else {
+        echo "<script>
+            alert('❌ Usuario o contraseña incorrectos');
+            window.location.href = '../index.html';
+        </script>";
+    }
+
+} catch (Exception $e) {
+    error_log("Error en login: " . $e->getMessage());
+    echo "<script>
+        alert('❌ Error interno. Intenta más tarde.');
+        window.location.href = '../index.html';
+    </script>";
 }
+?>
