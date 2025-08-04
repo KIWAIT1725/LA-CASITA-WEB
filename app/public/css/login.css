@@ -1,0 +1,279 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: linear-gradient(135deg, #8B5FBF 0%, #6366F1 50%, #8B5FBF 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.login-wrapper {
+    width: 100%;
+    max-width: 450px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-container {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    width: 100%;
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.form-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.form-container {
+    padding: 40px 40px 30px;
+    text-align: center;
+}
+
+.login-icon {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-gif {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    border-radius: 12px;
+}
+
+.icon-placeholder {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #6366F1 0%, #8B5FBF 100%);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 24px;
+}
+
+.form-title {
+    font-size: 28px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 30px;
+}
+
+.login-form {
+    width: 100%;
+    text-align: left;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-label {
+    display: inline-block;
+    background: #22C55E;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.form-input {
+    width: 100%;
+    padding: 16px;
+    border: 2px solid #E5E7EB;
+    border-radius: 8px;
+    font-size: 16px;
+    background: #F9FAFB;
+    color: #374151;
+    transition: all 0.3s ease;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #6366F1;
+    background: white;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+.form-input::placeholder {
+    color: #9CA3AF;
+}
+
+.login-button {
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(135deg, #6366F1 0%, #8B5FBF 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+.login-button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+}
+
+.login-button:active {
+    transform: translateY(0);
+}
+
+.footer {
+    padding: 20px 40px;
+    border-top: 1px solid #F3F4F6;
+    background: #FAFAFA;
+}
+
+.footer p {
+    font-size: 12px;
+    color: #6B7280;
+    text-align: center;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .login-wrapper {
+        max-width: 400px;
+    }
+    
+    .form-container {
+        padding: 35px 30px 25px;
+    }
+    
+    .login-icon {
+        margin-bottom: 18px;
+    }
+    
+    .login-gif,
+    .icon-placeholder {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .icon-placeholder {
+        font-size: 20px;
+    }
+    
+    .form-title {
+        font-size: 24px;
+        margin-bottom: 25px;
+    }
+    
+    .footer {
+        padding: 18px 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 15px;
+    }
+    
+    .login-wrapper {
+        max-width: 100%;
+    }
+    
+    .form-container {
+        padding: 30px 25px 20px;
+    }
+    
+    .login-gif,
+    .icon-placeholder {
+        width: 45px;
+        height: 45px;
+    }
+    
+    .icon-placeholder {
+        font-size: 18px;
+    }
+    
+    .form-title {
+        font-size: 22px;
+        margin-bottom: 20px;
+    }
+    
+    .input-group {
+        margin-bottom: 18px;
+    }
+    
+    .input-label {
+        padding: 5px 10px;
+        font-size: 12px;
+    }
+    
+    .form-input {
+        padding: 14px;
+        font-size: 16px; /* Evita zoom en iOS */
+    }
+    
+    .login-button {
+        padding: 14px;
+        font-size: 15px;
+    }
+    
+    .footer {
+        padding: 15px 25px;
+    }
+    
+    .footer p {
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 360px) {
+    .form-container {
+        padding: 25px 20px 15px;
+    }
+    
+    .login-gif,
+    .icon-placeholder {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .icon-placeholder {
+        font-size: 16px;
+    }
+    
+    .form-title {
+        font-size: 20px;
+    }
+    
+    .footer {
+        padding: 12px 20px;
+    }
+}
+
+/* Animación de entrada */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
